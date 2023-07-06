@@ -1,4 +1,4 @@
-package I_VierGewinnt;
+package k_VierGewinnt;
 
 import java.util.Scanner;
 
@@ -11,7 +11,6 @@ public class FVierGewinntMain {
 
     public static void main(String[] args) {
         setup();
-        FVierGewinnt game = new FVierGewinnt(w, h, player, player1);
     }
 
     private static void setup() {
@@ -35,6 +34,8 @@ public class FVierGewinntMain {
 
             System.out.println("Geben sie die Höhe ein");
             h = sc.nextInt();
+            System.out.println("Geben sie die Breite ein");
+            w = sc.nextInt();
         }
 
         System.out.println("Geben sie den Namen von Spieler 1 ein");
@@ -42,6 +43,18 @@ public class FVierGewinntMain {
 
         System.out.println("Geben sie den Namen von Spieler 2 ein");
         player1 = sc.next();
+
+        FVierGewinnt game = new FVierGewinnt(w, h, player, player1);
+        System.out.println(game);
+
+        int p = 0;
+
+        do {
+            System.out.println("Eine Zahl von 0 bis " + (w - 1) + " :");
+            p = sc.nextInt();
+            game.place(p);
+            System.out.println(game);
+        } while (!game.win());
         sc.close();
     }
 }
