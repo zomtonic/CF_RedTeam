@@ -34,6 +34,7 @@ table,
 td,
 th {
   border: 1px solid black;
+  text-align: center;
 }
 
 /* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
