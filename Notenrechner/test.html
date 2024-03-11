@@ -19,9 +19,9 @@
             <h1>Eingabe</h1>
             <form>
                 <label for="fname">Maximale Punkte</label><br>
-                <input type="number" id="MaxP" name="MaxP"><br>
+                <input type="number" id="MaxP" name="MaxP"><br><br>
                 <label for="lname">Erreichte Punkte</label><br>
-                <input type="number" id="RealP" name="RealP">
+                <input type="number" id="RealP" name="RealP"><br><br>
             </form>
 
             <table id="notenbereiche">
@@ -58,10 +58,34 @@
                 </tr>
             </table>
         </article>
+
+
         <article>
-            <h1>London</h1>
-            <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a
-                metropolitan area of over 13 million inhabitants.</p>
+            <h1>Ausgabe</h1>
+
+            <label for="s50">Punkte in der 50er Skala</label><br>
+            <output type="s50" id="s50" name="s50">532</output><br>
+
+            <table id="Skalen">
+                <tr>
+                    <td colspan="5">Punkte in anderen Skalen</td>
+                </tr>
+                <tr>
+                    <th>50</th>
+                </tr>
+                <tr>
+                    <th>80</th>
+                </tr>
+                <tr>
+                    <th>90</th>
+                </tr>
+                <tr>
+                    <th>100</th>
+                </tr>
+                <tr>
+                    <th>120</th>
+                </tr>
+
         </article>
     </section>
 
@@ -80,16 +104,16 @@
         return (60 - 50 / p1 * p2) / 10;
     }
     function my80S(p1, p2) {
-        return 80 / p1 * p1;
+        return 80 / p1 * p2;
     }
     function my90S(p1, p2) {
-        return 90 / p1 * p1;
+        return 90 / p1 * p2;
     }
     function my100S(p1, p2) {
-        return 100 / p1 * p1;
+        return 100 / p1 * p2;
     }
     function my120S(p1, p2) {
-        return 80 / p1 * p1;
+        return 120 / p1 * p2;
     }
 
     let note = myNote(MaxP, RealP);
@@ -109,7 +133,7 @@
     }
 
 
-    document.getElementById("501").innerHTML = 90;
+    document.getElementById("501").innerHTML = Ergebnisse[1];
 </script>
 
 </html>
