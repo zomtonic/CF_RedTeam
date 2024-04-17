@@ -67,7 +67,7 @@
                     <td> <label for="s50">Punkte in der 50er Skala</label><br> </td>
                 </tr>
                 <tr>
-                    <td> <output type="s50" id="s50" name="s50">532</output><br> </td>
+                    <td> <output type="s50" id="s50" name="s50"></output><br> </td>
                 </tr>
             </table>
 
@@ -76,19 +76,24 @@
                     <td colspan="5">Punkte in anderen Skalen</td>
                 </tr>
                 <tr>
-                    <th>50</th> <td id="P50"></td>
+                    <th>50</th>
+                    <td id="P50"></td>
                 </tr>
                 <tr>
-                    <th>80</th> <td id="P60"></td>
-                </tr>
-                <tr> 
-                    <th>90</th> <td id="P90"></td>
+                    <th>80</th>
+                    <td id="P60"></td>
                 </tr>
                 <tr>
-                    <th>100</th> <td id="P100"></td>
-                </tr> 
+                    <th>90</th>
+                    <td id="P90"></td>
+                </tr>
                 <tr>
-                    <th>120</th> <td id="P120"></td>
+                    <th>100</th>
+                    <td id="P100"></td>
+                </tr>
+                <tr>
+                    <th>120</th>
+                    <td id="P120"></td>
                 </tr>
 
         </article>
@@ -96,14 +101,17 @@
 
 </body>
 <script>
+    document.getElementById("MaxP").addEventListener("change", berechnen);
+    document.getElementById("RealP").addEventListener("change", berechnen);
+
+
     const np5 = [1.5, 4.5, 8.0, 11.5, 14.5, 180, 21.5, 24.5, 28, 31.5, 34.5, 38.0, 51.5, 44.5, 48.0, 50.0]; //Min-Wert = Max Wert n+1 -0.5
     const np8 = [21, 26, 31, 35, 39, 43, 47, 51, 55, 59, 63, 67, 71, 75, 80];//min bei 16 Abstand immer 1 (21->22)
     const np9 = [23, 29, 35, 40, 44, 49, 53, 58, 62, 67, 71, 76, 80, 85, 90];//min bei 18 Abstand immer 1
     const np10 = [26, 32, 39, 44, 49, 54, 59, 64, 69, 74, 79, 84, 89, 94, 100];//min bei 20 Abstand immer 1
     const np12 = [31, 39, 47, 53, 59, 65, 71, 77, 83, 89, 95, 101, 107, 113, 120];//min bei 24 Abstand immer 1
     const Skalen = [[1.5, 4.5, 8.0, 11.5, 14.5, 180, 21.5, 24.5, 28, 31.5, 34.5, 38.0, 51.5, 44.5, 48.0, 50.0], [21, 26, 31, 35, 39, 43, 47, 51, 55, 59, 63, 67, 71, 75, 80], [23, 29, 35, 40, 44, 49, 53, 58, 62, 67, 71, 76, 80, 85, 90], [26, 32, 39, 44, 49, 54, 59, 64, 69, 74, 79, 84, 89, 94, 100], [31, 39, 47, 53, 59, 65, 71, 77, 83, 89, 95, 101, 107, 113, 120]]
-    let MaxP = document.querySelector("#MaxP").value;
-    let RealP = document.querySelector("#RealP").value;
+
 
     function myNote(p1, p2) {
         return (60 - 50 / p1 * p2) / 10;
@@ -121,12 +129,18 @@
         return 120 / p1 * p2;
     }
 
-    let note = myNote(MaxP, RealP);
-    let s80 = my80S(MaxP, RealP);
-    let s90 = my90S(MaxP, RealP);
-    let s100 = my100S(MaxP, RealP);
-    let s120 = my120S(MaxP, RealP);
-    let Ergebnisse = [s80, s90, s100, s120];
+    function berechnen(MaxP, RealP) {
+
+    let MaxP = document.querySelector("#MaxP").value;
+        var RealP = document.querySelector("#RealP").value;
+        var note = myNote(MaxP, RealP);
+        var s80 = my80S(MaxP, RealP);
+        var s90 = my90S(MaxP, RealP);
+        var s100 = my100S(MaxP, RealP);
+        var s120 = my120S(MaxP, RealP);
+        var Ergebnisse = [s80, s90, s100, s120];
+        document.getElementById("s50").innerHTML = note;
+    }
 
 
     for (let i = 0; i < 5; i++) {
