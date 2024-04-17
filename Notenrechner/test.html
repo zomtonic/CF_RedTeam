@@ -4,7 +4,7 @@
 <head>
     <title>Notenrechner</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta port" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -19,9 +19,9 @@
             <h1>Eingabe</h1>
             <form>
                 <label for="fname">Maximale Punkte</label><br>
-                <input type="number" id="MaxP" name="MaxP"><br><br>
-                <label for="lname">Erreichte Punkte</label><br>
-                <input type="number" id="RealP" name="RealP"><br><br>
+                <input r" id="MaxP" "><br><br>
+                <label for=" lname">Erreichte Punkte</label><br>
+                <input r" id="RealP" P"><br><br>
             </form>
 
             <table id="notenbereiche">
@@ -36,25 +36,22 @@
                     <th>120</th>
                 </tr>
                 <tr>
-                    <td id="501"></td>
-                    <td id="801"></td>
-                    <td id="901"></td>
-                    <td id="1001"></td>
-                    <td id="1201"></td>
+                    <td><output id="s801"></output></td>
+                    <td><output id="s901"></output></td>
+                    <td><output id="s1001"></output></td>
+                    <td><output id="s1201"></output></td>
                 </tr>
                 <tr>
-                    <td id="502"></td>
-                    <td id="802"></td>
-                    <td id="902"></td>
-                    <td id="1002"></td>
-                    <td id="1202"></td>
+                    <td><output id="s802"></output></td>
+                    <td><output id="s902"></output></td>
+                    <td><output id="s1002"></output></td>
+                    <td><output id="s1202"></output></td>
                 </tr>
                 <tr>
-                    <td id="503"></td>
-                    <td id="803"></td>
-                    <td id="903"></td>
-                    <td id="1003"></td>
-                    <td id="1203"></td>
+                    <td><output id="s803"></output></td>
+                    <td><output id="s903"></output></td>
+                    <td><output id="s1003"></output></td>
+                    <td><output id="s1203"></output></td>
                 </tr>
             </table>
         </article>
@@ -67,7 +64,7 @@
                     <td> <label for="s50">Punkte in der 50er Skala</label><br> </td>
                 </tr>
                 <tr>
-                    <td> <output type="s50" id="s50" name="s50"></output><br> </td>
+                    <td> <output id="s50"></output><br> </td>
                 </tr>
             </table>
             <br>
@@ -77,24 +74,20 @@
                     <td colspan="5">Punkte in anderen Skalen</td>
                 </tr>
                 <tr>
-                    <th>50</th>
-                    <td id="P50"></td>
-                </tr>
-                <tr>
                     <th>80</th>
-                    <td id="P80"></td>
+                    <td><output id="s80"></output></td>
                 </tr>
                 <tr>
                     <th>90</th>
-                    <td id="P90"></td>
+                    <td><output id="s90"></output></td>
                 </tr>
                 <tr>
                     <th>100</th>
-                    <td id="P100"></td>
+                    <td><output id="s100"></output></td>
                 </tr>
                 <tr>
                     <th>120</th>
-                    <td id="P120"></td>
+                    <td><output id="s120"></output></td>
                 </tr>
 
         </article>
@@ -117,41 +110,54 @@
     function myNote(p1, p2) {
         return (60 - 50 / p1 * p2) / 10;
     }
-    function my80S(p1, p2) {
+    function my80s(p1, p2) {
         return 80 / p1 * p2;
     }
-    function my90S(p1, p2) {
+    function my90s(p1, p2) {
         return 90 / p1 * p2;
     }
-    function my100S(p1, p2) {
+    function my100s(p1, p2) {
         return 100 / p1 * p2;
     }
-    function my120S(p1, p2) {
+    function my120s(p1, p2) {
         return 120 / p1 * p2;
     }
 
     function berechnen(MaxP, RealP) {
         var MaxP = document.querySelector("#MaxP").value;
         var RealP = document.querySelector("#RealP").value;
-        document.getElementById("s50").innerHTML = myNote(MaxP, RealP);
-        document.getElementById("P80").innerHTML = my80s(MaxP, RealP);
-        document.getElementById("P90").innerHTML = my90s(MaxP, RealP);
-        document.getElementById("P100").innerHTML = my100s(MaxP, RealP);
-        document.getElementById("P120").innerHTML = my120s(MaxP, RealP);
+        var Ergebnisse = [myNote(MaxP, RealP), my80s(MaxP, RealP), my90s(MaxP, RealP), my100s(MaxP, RealP), my120s(MaxP, RealP)];
+        document.getElementById("s50").innerHTML = Ergebnisse[0];
+        document.getElementById("s80").innerHTML = Ergebnisse[1];
+        document.getElementById("s90").innerHTML = Ergebnisse[2];
+        document.getElementById("s100").innerHTML = Ergebnisse[3];
+        document.getElementById("s120").innerHTML = Ergebnisse[4];
 
-    }
-
-
-    for (let i = 0; i < 5; i++) {
-        for (let l = 0; l < array.length; l++) {
-            if (Ergebnisse[i] >= Skalen[i][l]) {
-                Ergebnisse[i] = l;
+        for (let i = 1; i < 5; i++) {
+            for (let l = 1; l < array.length; l++) {
+                if (Ergebnisse[i] >= Skalen[i][l]) {
+                    Ergebnisse[i] = l;
+                }
             }
         }
+
+        document.getElementById("s801").innerHTML = Skalen[1][Ergebnisse[1]-1];
+        document.getElementById("s802").innerHTML = Skalen[1][Ergebnisse[1]];
+        document.getElementById("s803").innerHTML = Skalen[1][Ergebnisse[1]+1];
+
+        document.getElementById("s901").innerHTML = Skalen[2][Ergebnisse[2]-1];
+        document.getElementById("s902").innerHTML = Skalen[2][Ergebnisse[2]];
+        document.getElementById("s903").innerHTML = Skalen[2][Ergebnisse[2]+1];
+
+        document.getElementById("s1001").innerHTML = Skalen[3][Ergebnisse[3]-1];
+        document.getElementById("s1002").innerHTML = Skalen[3][Ergebnisse[3]];
+        document.getElementById("s1003").innerHTML = Skalen[3][Ergebnisse[3]+1];
+    
+        document.getElementById("s1201").innerHTML = Skalen[4][Ergebnisse[4]-1];
+        document.getElementById("s1202").innerHTML = Skalen[4][Ergebnisse[4]];
+        document.getElementById("s1203").innerHTML = Skalen[4][Ergebnisse[4]+1];
     }
 
-
-    document.getElementById("501").innerHTML = Ergebnisse[1];
 </script>
 
 </html>
