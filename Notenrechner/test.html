@@ -70,6 +70,7 @@
                     <td> <output type="s50" id="s50" name="s50"></output><br> </td>
                 </tr>
             </table>
+            <br>
 
             <table id="Skalen">
                 <tr>
@@ -130,8 +131,7 @@
     }
 
     function berechnen(MaxP, RealP) {
-
-    let MaxP = document.querySelector("#MaxP").value;
+        var MaxP = document.querySelector("#MaxP").value;
         var RealP = document.querySelector("#RealP").value;
         var note = myNote(MaxP, RealP);
         var s80 = my80S(MaxP, RealP);
