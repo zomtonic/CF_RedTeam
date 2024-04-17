@@ -82,7 +82,7 @@
                 </tr>
                 <tr>
                     <th>80</th>
-                    <td id="P60"></td>
+                    <td id="P80"></td>
                 </tr>
                 <tr>
                     <th>90</th>
@@ -133,13 +133,12 @@
     function berechnen(MaxP, RealP) {
         var MaxP = document.querySelector("#MaxP").value;
         var RealP = document.querySelector("#RealP").value;
-        var note = myNote(MaxP, RealP);
-        var s80 = my80S(MaxP, RealP);
-        var s90 = my90S(MaxP, RealP);
-        var s100 = my100S(MaxP, RealP);
-        var s120 = my120S(MaxP, RealP);
-        var Ergebnisse = [s80, s90, s100, s120];
-        document.getElementById("s50").innerHTML = note;
+        document.getElementById("s50").innerHTML = myNote(MaxP, RealP);
+        document.getElementById("P80").innerHTML = my80s(MaxP, RealP);
+        document.getElementById("P90").innerHTML = my90s(MaxP, RealP);
+        document.getElementById("P100").innerHTML = my100s(MaxP, RealP);
+        document.getElementById("P120").innerHTML = my120s(MaxP, RealP);
+
     }
 
 
