@@ -97,8 +97,8 @@
     const np10 = [26, 32, 39, 44, 49, 54, 59, 64, 69, 74, 79, 84, 89, 94, 100];//min bei 20 Abstand immer 1
     const np12 = [31, 39, 47, 53, 59, 65, 71, 77, 83, 89, 95, 101, 107, 113, 120];//min bei 24 Abstand immer 1
     const Skalen = [[1.5, 4.5, 8.0, 11.5, 14.5, 180, 21.5, 24.5, 28, 31.5, 34.5, 38.0, 51.5, 44.5, 48.0, 50.0], [21, 26, 31, 35, 39, 43, 47, 51, 55, 59, 63, 67, 71, 75, 80], [23, 29, 35, 40, 44, 49, 53, 58, 62, 67, 71, 76, 80, 85, 90], [26, 32, 39, 44, 49, 54, 59, 64, 69, 74, 79, 84, 89, 94, 100], [31, 39, 47, 53, 59, 65, 71, 77, 83, 89, 95, 101, 107, 113, 120]]
-    let MaxP = document.getElementById("MaxP").innerHTML;
-    let RealP = document.getElementById("RealP").innerHTML;
+    let MaxP = document.querySelector("#MaxP").value;
+    let RealP = document.querySelector("#RealP").value;
 
     function myNote(p1, p2) {
         return (60 - 50 / p1 * p2) / 10;
