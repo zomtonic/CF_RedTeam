@@ -30,41 +30,29 @@
                 </tr>
                 <tr>
                     <th>80</th>
-                    <th id ="np">NP</th>
                     <th>90</th>
-                    <th id ="np">NP</th>
                     <th>100</th>
-                    <th id ="np">NP</th>
                     <th>120</th>
                     <th id ="np">NP</th>
                 </tr>
                 <tr>
                     <td><output id="s801"></output></td>
-                    <td><output id="np801"></output></td>
                     <td><output id="s901"></output></td>
-                    <td><output id="np901"></output></td>
                     <td><output id="s1001"></output></td>
-                    <td><output id="np1001"></output></td>
                     <td><output id="s1201"></output></td>
                     <td><output id="np1201"></output></td>
                 </tr>
                 <tr>
                     <td><output id="s802"></output></td>
-                    <td><output id="np802"></output></td>
                     <td><output id="s902"></output></td>
-                    <td><output id="np902"></output></td>
                     <td><output id="s1002"></output></td>
-                    <td><output id="np1002"></output></td>
                     <td><output id="s1202"></output></td>
                     <td><output id="np1202"></output></td>
                 </tr>
                 <tr>
                     <td><output id="s803"></output></td>
-                    <td><output id="np803"></output></td>
                     <td><output id="s903"></output></td>
-                    <td><output id="np903"></output></td>
                     <td><output id="s1003"></output></td>
-                    <td><output id="np1003"></output></td>
                     <td><output id="s1203"></output></td>
                     <td><output id="np1203"></output></td>
                 </tr>
@@ -170,7 +158,7 @@
         for (let i = 0; i < 4; i++) {
             for (let l = 1; l < 4; l++) {
                 var s = "s" + ids[i + 1] + l;
-                var np = "np" + ids[i + 1] + l;
+                var np = "np120"+ l;
                 console.log(s);
                 document.getElementById(s).innerHTML = (~~(Skalen[i+1][Ergebnisse[i+1] + (l - 3)] + 1) + " - " + clamp(Skalen[i+1][Ergebnisse[i+1] + (l - 2)], 0, ids[i+1]));
                 document.getElementById(np).innerHTML = (Ergebnisse[i+1] + (l - 2));
