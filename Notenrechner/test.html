@@ -30,13 +30,13 @@
                 </tr>
                 <tr>
                     <th>80</th>
-                    <th>NP</th>
+                    <th id ="np">NP</th>
                     <th>90</th>
-                    <th>NP</th>
+                    <th id ="np">NP</th>
                     <th>100</th>
-                    <th>NP</th>
+                    <th id ="np">NP</th>
                     <th>120</th>
-                    <th>NP</th>
+                    <th id ="np">NP</th>
                 </tr>
                 <tr>
                     <td><output id="s801"></output></td>
@@ -153,7 +153,7 @@
         var ids = ["50", "80", "90", "100", "120"];
 
         for (let i = 0; i < 5; i++) {
-            document.getElementById("s" + ids[i]).innerHTML = Ergebnisse[i];
+            document.getElementById("s" + ids[i]).innerHTML = Math.round( Ergebnisse[i]*100)/100;
         }
 
         console.log("hey listen");
@@ -172,8 +172,11 @@
                 var s = "s" + ids[i + 1] + l;
                 var np = "np" + ids[i + 1] + l;
                 console.log(s);
-                document.getElementById(s).innerHTML = (~~(Skalen[1][Ergebnisse[1] + (l - 2)] + 1) + " - " + clamp(Skalen[1][Ergebnisse[1] + (l - 1)], 0, 80));
-                document.getElementById(np).innerHTML = (Ergebnisse[1] + (l - 2));
+                document.getElementById(s).innerHTML = (~~(Skalen[i+1][Ergebnisse[i+1] + (l - 3)] + 1) + " - " + clamp(Skalen[i+1][Ergebnisse[i+1] + (l - 2)], 0, ids[i+1]));
+                document.getElementById(np).innerHTML = (Ergebnisse[i+1] + (l - 2));
+
+                //document.getElementById(np).style.display = "none";
+                //document.getElementById("np").style.display = "none";
             }
         }
     }
