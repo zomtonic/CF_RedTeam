@@ -26,32 +26,47 @@
 
             <table id="notenbereiche">
                 <tr>
-                    <td colspan="5">Relevante Punktebereiche in den Skalen</td>
+                    <td colspan="8">Relevante Punktebereiche in den Skalen</td>
                 </tr>
                 <tr>
-                    <th>50</th>
                     <th>80</th>
+                    <th>NP</th>
                     <th>90</th>
+                    <th>NP</th>
                     <th>100</th>
+                    <th>NP</th>
                     <th>120</th>
+                    <th>NP</th>
                 </tr>
                 <tr>
                     <td><output id="s801"></output></td>
+                    <td><output id="np801"></output></td>
                     <td><output id="s901"></output></td>
+                    <td><output id="np901"></output></td>
                     <td><output id="s1001"></output></td>
+                    <td><output id="np1001"></output></td>
                     <td><output id="s1201"></output></td>
+                    <td><output id="np1201"></output></td>
                 </tr>
                 <tr>
                     <td><output id="s802"></output></td>
+                    <td><output id="np802"></output></td>
                     <td><output id="s902"></output></td>
+                    <td><output id="np902"></output></td>
                     <td><output id="s1002"></output></td>
+                    <td><output id="np1002"></output></td>
                     <td><output id="s1202"></output></td>
+                    <td><output id="np1202"></output></td>
                 </tr>
                 <tr>
                     <td><output id="s803"></output></td>
+                    <td><output id="np803"></output></td>
                     <td><output id="s903"></output></td>
+                    <td><output id="np903"></output></td>
                     <td><output id="s1003"></output></td>
+                    <td><output id="np1003"></output></td>
                     <td><output id="s1203"></output></td>
+                    <td><output id="np1203"></output></td>
                 </tr>
             </table>
         </article>
@@ -61,7 +76,7 @@
             <h1>Ausgabe</h1>
             <table>
                 <tr>
-                    <td> <label for="s50">Punkte in der 50er Skala</label><br> </td>
+                    <td> <label for="s50">Note in der 50er Skala</label><br> </td>
                 </tr>
                 <tr>
                     <td> <output id="s50"></output><br> </td>
@@ -104,7 +119,7 @@
     const np9 = [23, 29, 35, 40, 44, 49, 53, 58, 62, 67, 71, 76, 80, 85, 90];//min bei 18 Abstand immer 1
     const np10 = [26, 32, 39, 44, 49, 54, 59, 64, 69, 74, 79, 84, 89, 94, 100];//min bei 20 Abstand immer 1
     const np12 = [31, 39, 47, 53, 59, 65, 71, 77, 83, 89, 95, 101, 107, 113, 120];//min bei 24 Abstand immer 1
-    const Skalen = [[1.5, 4.5, 8.0, 11.5, 14.5, 180, 21.5, 24.5, 28, 31.5, 34.5, 38.0, 51.5, 44.5, 48.0, 50.0], [21, 26, 31, 35, 39, 43, 47, 51, 55, 59, 63, 67, 71, 75, 80], [23, 29, 35, 40, 44, 49, 53, 58, 62, 67, 71, 76, 80, 85, 90], [26, 32, 39, 44, 49, 54, 59, 64, 69, 74, 79, 84, 89, 94, 100], [31, 39, 47, 53, 59, 65, 71, 77, 83, 89, 95, 101, 107, 113, 120]]
+    const Skalen = [[0, 1.5, 4.5, 8.0, 11.5, 14.5, 180, 21.5, 24.5, 28, 31.5, 34.5, 38.0, 51.5, 44.5, 48.0, 50.0], [0, 21, 26, 31, 35, 39, 43, 47, 51, 55, 59, 63, 67, 71, 75, 80], [0, 23, 29, 35, 40, 44, 49, 53, 58, 62, 67, 71, 76, 80, 85, 90], [0, 26, 32, 39, 44, 49, 54, 59, 64, 69, 74, 79, 84, 89, 94, 100], [0, 31, 39, 47, 53, 59, 65, 71, 77, 83, 89, 95, 101, 107, 113, 120]]
 
 
     function myNote(p1, p2) {
@@ -123,6 +138,14 @@
         return 120 / p1 * p2;
     }
 
+    function clamp(num, min, max) {
+        return num <= min
+            ? min
+            : num >= max
+                ? max
+                : num
+    }
+
     function berechnen(MaxP, RealP) {
         var MaxP = document.querySelector("#MaxP").value;
         var RealP = document.querySelector("#RealP").value;
@@ -133,30 +156,52 @@
         document.getElementById("s100").innerHTML = Ergebnisse[3];
         document.getElementById("s120").innerHTML = Ergebnisse[4];
 
-        for (let i = 1; i < 5; i++) {
-            for (let l = 1; l < array.length; l++) {
+        console.log("hey listen");
+        for (var i = 1; i < 5; i++) {
+            for (var l = 15; l >= 0; l--) {
+                console.log(Ergebnisse[i] + ">=" + Skalen[i][l])
                 if (Ergebnisse[i] >= Skalen[i][l]) {
                     Ergebnisse[i] = l;
+                    break
                 }
             }
         }
+        console.log("i:" + i + " l:" + l);
 
-        document.getElementById("s801").innerHTML = Skalen[1][Ergebnisse[1]-1];
-        document.getElementById("s802").innerHTML = Skalen[1][Ergebnisse[1]];
-        document.getElementById("s803").innerHTML = Skalen[1][Ergebnisse[1]+1];
+        document.getElementById("s801").innerHTML = (~~(Skalen[1][Ergebnisse[1] - 2] + 1) + " - " + clamp(Skalen[1][Ergebnisse[1] - 1], 0, 80));
+        document.getElementById("s901").innerHTML = (~~(Skalen[2][Ergebnisse[1] - 2] + 1) + " - " + clamp(Skalen[2][Ergebnisse[1] - 1], 0, 90));
+        document.getElementById("s1001").innerHTML = (~~(Skalen[3][Ergebnisse[1] - 2] + 1) + " - " + clamp(Skalen[3][Ergebnisse[1] - 1], 0, 100));
+        document.getElementById("s1201").innerHTML = (~~(Skalen[4][Ergebnisse[1] - 2] + 1) + " - " + clamp(Skalen[4][Ergebnisse[1] - 1], 0, 120));
 
-        document.getElementById("s901").innerHTML = Skalen[2][Ergebnisse[2]-1];
-        document.getElementById("s902").innerHTML = Skalen[2][Ergebnisse[2]];
-        document.getElementById("s903").innerHTML = Skalen[2][Ergebnisse[2]+1];
+        document.getElementById("s802").innerHTML = (~~(Skalen[1][Ergebnisse[1] - 1] + 1) + " - " + clamp(Skalen[1][Ergebnisse[1]], 0, 80));
+        document.getElementById("s902").innerHTML = (~~(Skalen[2][Ergebnisse[1] - 1] + 1) + " - " + clamp(Skalen[2][Ergebnisse[1]], 0, 90));
+        document.getElementById("s1002").innerHTML = (~~(Skalen[3][Ergebnisse[1] - 1] + 1) + " - " + clamp(Skalen[3][Ergebnisse[1]], 0, 100));
+        document.getElementById("s1202").innerHTML = (~~(Skalen[4][Ergebnisse[1] - 1] + 1) + " - " + clamp(Skalen[4][Ergebnisse[1]], 0, 120));
 
-        document.getElementById("s1001").innerHTML = Skalen[3][Ergebnisse[3]-1];
-        document.getElementById("s1002").innerHTML = Skalen[3][Ergebnisse[3]];
-        document.getElementById("s1003").innerHTML = Skalen[3][Ergebnisse[3]+1];
-    
-        document.getElementById("s1201").innerHTML = Skalen[4][Ergebnisse[4]-1];
-        document.getElementById("s1202").innerHTML = Skalen[4][Ergebnisse[4]];
-        document.getElementById("s1203").innerHTML = Skalen[4][Ergebnisse[4]+1];
+        document.getElementById("s803").innerHTML = (~~(Skalen[1][Ergebnisse[1]] + 1) + " - " + clamp(Skalen[1][Ergebnisse[1] + 1], 0, 80));
+        document.getElementById("s903").innerHTML = (~~(Skalen[2][Ergebnisse[1]] + 1) + " - " + clamp(Skalen[2][Ergebnisse[1] + 1], 0, 90));
+        document.getElementById("s1003").innerHTML = (~~(Skalen[3][Ergebnisse[1]] + 1) + " - " + clamp(Skalen[3][Ergebnisse[1] + 1], 0, 100));
+        document.getElementById("s1203").innerHTML = (~~(Skalen[4][Ergebnisse[1]] + 1) + " - " + clamp(Skalen[4][Ergebnisse[1] + 1], 0, 120));
+
+
+        document.getElementById("np801").innerHTML = (Ergebnisse[1] - 1);
+        document.getElementById("np901").innerHTML = (Ergebnisse[2] - 1);
+        document.getElementById("np1001").innerHTML = (Ergebnisse[3] - 1);
+        document.getElementById("np1201").innerHTML = (Ergebnisse[4] - 1);
+
+        document.getElementById("np802").innerHTML = (Ergebnisse[1]);
+        document.getElementById("np902").innerHTML = (Ergebnisse[2]);
+        document.getElementById("np1002").innerHTML = (Ergebnisse[3]);
+        document.getElementById("np1202").innerHTML = (Ergebnisse[4]);
+
+        document.getElementById("np803").innerHTML = (Ergebnisse[1] + 1);
+        document.getElementById("np903").innerHTML = (Ergebnisse[2] + 1);
+        document.getElementById("np1003").innerHTML = (Ergebnisse[3] + 1);
+        document.getElementById("np1203").innerHTML = (Ergebnisse[4] + 1);
+
     }
+
+
 
 </script>
 
